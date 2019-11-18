@@ -1,0 +1,36 @@
+Package: EnrichKit
+Type: Package
+Title: Perform hypergeometric-based over-presentation analysis
+Version: 0.1.0
+Author: Lihe Liu <lihe.liu@ufl.edu>
+Maintainer: Lihe Liu <lihe.liu@ufl.edu>
+Description: Perform hypergeometric-based over-presentation analysis.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    edgeR,
+    WGCNA,
+    ggplot2,
+    dplyr,
+    tidyr,
+    readr,
+    tibble,
+    stringr,
+    limma,
+    biomaRt,
+    readxl,
+    GOSemSim,
+    corrplot,
+    org.Bt.eg.db,
+    MeSH.db,
+    MeSH.Bta.eg.db,
+    stats,
+    sva,
+    meshr,
+    recount,
+    AnnotationDbi,
+    magrittr,
+    openxlsx,
+    grDevices
+RoxygenNote: 7.0.0.9000
