@@ -33,4 +33,4 @@ Imports:
     magrittr,
     openxlsx,
     grDevices
-RoxygenNote: 7.0.0.9000
+RoxygenNote: 7.0.1

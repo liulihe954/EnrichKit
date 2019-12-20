@@ -4,7 +4,16 @@
 \alias{DataPre_C}
 \title{RNA-seq data preparation for correlation network analysis - With pc correction}
 \usage{
-DataPre_C(networkData, cousin = 0.4, n1, n2, perct, correct = T)
+DataPre_C(
+  networkData,
+  cousin = 0.4,
+  n1,
+  n2,
+  perct,
+  correct = T,
+  thres_rmzero = 5,
+  count_rmzero
+)
 }
 \arguments{
 \item{networkData}{A dataframe contains expression data, samples in rows and genes in columns.}
@@ -18,6 +27,10 @@ DataPre_C(networkData, cousin = 0.4, n1, n2, perct, correct = T)
 \item{perct}{Percentage of genes need to be removed based on overall expression variance. Only genes with high variance will be included in network analysis.}
 
 \item{correct}{Whether pc-based correction should be used or not.}
+
+\item{thres_rmzero}{Lowest count considered as not expressed, default 5 reads per sample.}
+
+\item{count_rmzero}{threshold of individuals to remove a gene, usually 1/2 sample size.}
 }
 \value{
 A dataframe with corrected measurement of expression.
