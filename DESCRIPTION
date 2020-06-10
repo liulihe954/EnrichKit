@@ -4,7 +4,9 @@ Title: Perform hypergeometric-based over-presentation analysis
 Version: 0.1.0
 Author: Lihe Liu <lihe.liu@ufl.edu>
 Maintainer: Lihe Liu <lihe.liu@ufl.edu>
-Description: Perform hypergeometric-based over-presentation analysis.
+Description: Provides functionalities for downloding biological pathways/terms from published databases, 
+    including GO, KEGG, Interpro, Reactome, MeSH and Molecular Signatures Database (MSigDB), performing 
+    hypergeometric-based over-presentation analysis and visualizing results.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -33,4 +35,4 @@ Imports:
     magrittr,
     openxlsx,
     grDevices
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2

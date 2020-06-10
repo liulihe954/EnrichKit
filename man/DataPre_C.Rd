@@ -10,9 +10,9 @@ DataPre_C(
   n1,
   n2,
   perct,
-  correct = T,
   thres_rmzero = 5,
-  count_rmzero
+  count_rmzero,
+  Correct = T
 )
 }
 \arguments{
@@ -26,11 +26,11 @@ DataPre_C(
 
 \item{perct}{Percentage of genes need to be removed based on overall expression variance. Only genes with high variance will be included in network analysis.}
 
-\item{correct}{Whether pc-based correction should be used or not.}
+\item{thres_rmzero}{when remove genes with many low expression, the minimum valid counts, default 5}
 
-\item{thres_rmzero}{Lowest count considered as not expressed, default 5 reads per sample.}
+\item{count_rmzero}{when remove genes with many low expression, the minimum number of samples counted}
 
-\item{count_rmzero}{threshold of individuals to remove a gene, usually 1/2 sample size.}
+\item{Correct}{Whether pc-based correction should be used or not.}
 }
 \value{
 A dataframe with corrected measurement of expression.
