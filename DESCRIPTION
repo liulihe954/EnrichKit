@@ -2,7 +2,7 @@ Package: EnrichKit
 Type: Package
 Title: Perform hypergeometric-based over-presentation analysis
 Version: 0.1.0
-Author: Lihe Liu <lihe.liu@ufl.edu>
+Author: Lihe Liu, Francisco Peñagaricano
 Maintainer: Lihe Liu <lihe.liu@ufl.edu>
 Description: Provides functionalities for downloding biological pathways/terms from published databases, 
     including GO, KEGG, Interpro, Reactome, MeSH and Molecular Signatures Database (MSigDB), performing 
@@ -36,3 +36,9 @@ Imports:
     openxlsx,
     grDevices
 RoxygenNote: 7.0.2
+URL: https://github.com/liulihe954/EnrichKit
+BugReports: https://github.com/liulihe954/EnrichKit/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
