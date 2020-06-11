@@ -10,7 +10,8 @@ HyperGEnrich(
   minOverlap = 4,
   pvalue_thres = 0.05,
   adj_pvalue_thres = 1,
-  padj_method = "BH"
+  padj_method = "BH",
+  NewDB = F
 )
 }
 \arguments{
@@ -22,11 +23,13 @@ Also should have a column "Sig" indicating significant or not, 1 - significant; 
 
 \item{minOverlap}{Minimum overlap number of total genes and genes of a target pathway, default value is \code{4}}
 
-\item{pvalue_thres}{Pvalue of the Fisher's exact test. Refer to \code{\link{fisher.test}}}
+\item{pvalue_thres}{Pvalue threshold of the Fisher's exact test. Refer to \code{\link{fisher.test}}}
 
-\item{adj_pvalue_thres}{Adjusted pvalues; choose methods from c("bonferroni","hochberg","BH"). Refer to \code{\link{p.adjust}}}
+\item{adj_pvalue_thres}{Adjusted value threshold for multiple testing control.}
 
-\item{padj_method}{}
+\item{padj_method}{Adjusted pvalues; choose methods from c("bonferroni","hochberg","BH"). Refer to \code{\link{p.adjust}}}
+
+\item{NewDB}{If new database will be used, please do \code{NewDB = T}. Please make sure xxx.rda was generated using XXX_DB_Update() and is currently in the working directory.}
 }
 \value{
 

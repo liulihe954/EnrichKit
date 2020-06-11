@@ -7,9 +7,10 @@
 #'
 #' @param Database Indicate one of the dataset to be used; choose from c("go","kegg","interpro","mesh","msig","reactome")
 #' @param minOverlap Minimum overlap number of total genes and genes of a target pathway, default value is \code{4}
-#' @param pvalue_thres Pvalue of the Fisher's exact test. Refer to \code{\link{fisher.test}}
-#' @param adj_pvalue_thres Adjusted pvalues; choose methods from c("bonferroni","hochberg","BH"). Refer to \code{\link{p.adjust}}
-#' @param padj_method
+#' @param pvalue_thres Pvalue threshold of the Fisher's exact test. Refer to \code{\link{fisher.test}}
+#' @param adj_pvalue_thres Adjusted value threshold for multiple testing control.
+#' @param padj_method Adjusted pvalues; choose methods from c("bonferroni","hochberg","BH"). Refer to \code{\link{p.adjust}}
+#' @param NewDB If new database will be used, please do \code{NewDB = T}. Please make sure xxx.rda was generated using XXX_DB_Update() and is currently in the working directory.
 #'
 #' @return
 #' @export
@@ -22,24 +23,43 @@ HyperGEnrich = function(GeneSet = sigGene_All,
                         minOverlap = 4,
                         pvalue_thres = 0.05,
                         adj_pvalue_thres = 1,
-                        padj_method = "BH"){
+                        padj_method = "BH",
+                        NewDB = F){
   # get db
   TestingSubsetNames = names(GeneSet)
   message("Total Number of subsets/module to check: ",length(TestingSubsetNames))
-  if (Database == 'go'){
-    DB_List = get(data(GO_DB));IDtype = 1
-  } else if (Database == 'kegg'){
-    DB_List = get(data(KEGG_DB));IDtype = 2
-  } else if (Database == 'interpro'){
-    DB_List = get(data(Interpro_DB));IDtype = 1
-  } else if (Database == 'mesh'){
-    DB_List = get(data(MeSH_DB));IDtype = 2
-  } else if (Database == 'msig'){
-    DB_List = get(data(Msig_DB));IDtype = 2
-  } else if (Database == 'reactome'){
-    DB_List = get(data(Reactome_DB));IDtype = 2
+  if (NewDB != T){
+    if (Database == 'go'){
+      DB_List = get(data(GO_DB));IDtype = 1
+    } else if (Database == 'kegg'){
+      DB_List = get(data(KEGG_DB));IDtype = 2
+    } else if (Database == 'interpro'){
+      DB_List = get(data(Interpro_DB));IDtype = 1
+    } else if (Database == 'mesh'){
+      DB_List = get(data(MeSH_DB));IDtype = 2
+    } else if (Database == 'msig'){
+      DB_List = get(data(Msig_DB));IDtype = 2
+    } else if (Database == 'reactome'){
+      DB_List = get(data(Reactome_DB));IDtype = 2
+    } else {
+      print('Please choose database: go,kegg,interpro,mesh,msig,reactome')
+    }
   } else {
-    print('Please choose database: go,kegg,interpro,mesh,msig,reactome')
+    if (Database == 'go'){
+      DB_List = get(load('./GO_DB.rda'));IDtype = 1
+    } else if (Database == 'kegg'){
+      DB_List = get(load('./KEGG_DB.rda'));IDtype = 2
+    } else if (Database == 'interpro'){
+      DB_List = get(load('./Interpro_DB.rda'));IDtype = 1
+    } else if (Database == 'mesh'){
+      DB_List = get(load('./MeSH_DB.rda'));IDtype = 2
+    } else if (Database == 'msig'){
+      DB_List = get(load('./Msig_DB.rda'));IDtype = 2
+    } else if (Database == 'reactome'){
+      DB_List = get(load('./Reactome_DB.rda'));IDtype = 2
+    } else {
+      print('Please choose database: go,kegg,interpro,mesh,msig,reactome')
+    }
   }
   #
   GeneInDB = unique(unlist(DB_List,use.names = F))

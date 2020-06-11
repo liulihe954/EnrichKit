@@ -1,4 +1,4 @@
-#' RNA-seq data preparation for correlation network analysis - With pc correction
+#' RNA-seq data preparation for correlation network analysis - With pc correction available
 #'
 #' @param networkData A dataframe contains expression data, samples in rows and genes in columns.
 #' @param cousin Percentage of reads that need to be removed. Only a few genes have many reads thus we remove them.
@@ -12,12 +12,12 @@
 #' @param count_rmzero when remove genes with many low expression, the minimum number of samples counted
 #' @return A dataframe with corrected measurement of expression.
 #'
-#' @import stats recount limma sva WGCNA stats ggplot2 dplyr tidyr readr tibble stringr edgeR biomaRt readxl GOSemSim corrplot org.Bt.eg.db MeSH.db MeSH.Bta.eg.db meshr magrittr AnnotationDbi
-#' @importFrom grDevices pdf png dev.off
+#' @import stats recount limma sva WGCNA stats dplyr readr tibble stringr edgeR readxl
 #'
 #' @export
 #'
-DataPre_C = function(networkData, cousin = 0.4, n1, n2, perct,
+#'
+DataPre = function(networkData, cousin = 0.4, n1, n2, perct,
                      thres_rmzero = 5, count_rmzero,
                      Correct = T){
   #function prepare
