@@ -123,7 +123,8 @@ databases by themselves using the built-in database updating functions.
 There are totally six dataset being subject to update.
 
 ``` r
-# Note that these functions are potentially time-comsuming
+# Note that these functions are potentially time-comsuming.
+# New databases (in .RData format) will be stored in current working directory
 GO_DB_Update()
 KEGG_DB_Update()
 Interpro_DB_Update()

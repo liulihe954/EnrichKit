@@ -98,7 +98,8 @@ Although databases will be updated on regular bases (tentatively half-yearly), u
 There are totally six dataset being subject to update.
 
 ```{r database update, eval=F}
-# Note that these functions are potentially time-comsuming
+# Note that these functions are potentially time-comsuming.
+# New databases (in .RData format) will be stored in current working directory
 GO_DB_Update()
 KEGG_DB_Update()
 Interpro_DB_Update()
