@@ -152,9 +152,3 @@ HyperGEnrich(GeneSet = GeneInfo,
              padj_method = "BH",
              NewDB = T) ###
 ```
-
-``` r
-plot(c(1:10))
-```
-
-<img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" />

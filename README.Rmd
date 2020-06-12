@@ -124,7 +124,3 @@ HyperGEnrich(GeneSet = GeneInfo,
              padj_method = "BH",
              NewDB = T) ###
 ```
-
-```{r}
-plot(c(1:10))
-```
