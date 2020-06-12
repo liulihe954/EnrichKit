@@ -3,6 +3,9 @@
 
 # EnrichKit
 
+Authors: Lihe Liu and Francisco Peñagaricano  
+Maintainer: Lihe Liu (<lihe.liu@ufl.edu>)
+
 <!-- badges: start -->
 
 <!-- badges: end -->
@@ -30,49 +33,45 @@ Gene Symbol*.
 Note current release can only support **Bos Taurus**, other organism
 might be included in future release.
 
+Latest update 06-08-2020.
+
+## Installation
+
+Currently not published on [CRAN](https://CRAN.R-project.org).
+
+Users are welcome to use the development version from
+[GitHub](https://github.com/) with:
+
+``` r
+install.packages("devtools")
+devtools::install_github("liulihe954/EnrichKit")
+```
+
 ## Example
 
 Soppose we have identified 2 out 5 DEG in each of the two lactations.
 
 ``` r
-require(EnrichKit,quietly = TRUE)
-#> 
-#> Warning: replacing previous import 'data.table::last' by 'dplyr::last' when
-#> loading 'EnrichKit'
-#> Warning: replacing previous import 'data.table::first' by 'dplyr::first' when
-#> loading 'EnrichKit'
-#> Warning: replacing previous import 'biomaRt::select' by 'dplyr::select' when
-#> loading 'EnrichKit'
-#> Warning: replacing previous import 'data.table::between' by 'dplyr::between'
-#> when loading 'EnrichKit'
-#> Setting options('download.file.method.GEOquery'='auto')
-#> Setting options('GEOquery.inmemory.gpl'=FALSE)
-#> Warning: replacing previous import 'WGCNA::cor' by 'stats::cor' when loading
-#> 'EnrichKit'
-#> Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
-#> loading 'EnrichKit'
-#> Warning: replacing previous import 'dplyr::lag' by 'stats::lag' when loading
-#> 'EnrichKit'
-Sig_lac1 =   c("ENSBTAG00000012594","ENSBTAG00000049850")
+library(EnrichKit)
+# input format
+Sig_lac1 =   c("ENSBTAG00000012594","ENSBTAG00000004139")
 Sig_lac2 =   c("ENSBTAG00000009188","ENSBTAG00000001258")
-Tot_lac1 = c("ENSBTAG00000012594","ENSBTAG00000049850","ENSBTAG00000018278","ENSBTAG00000021997","ENSBTAG00000008482")
+Tot_lac1 = c("ENSBTAG00000012594","ENSBTAG00000004139","ENSBTAG00000018278","ENSBTAG00000021997","ENSBTAG00000008482")
 Tot_lac2 = c("ENSBTAG00000009188","ENSBTAG00000001258","ENSBTAG00000021819","ENSBTAG00000019404","ENSBTAG00000015212")
 
+# convert and orgnize
 GeneInfo = convertNformatID(GeneSetNames=c("lactation1","lactation2"),
                             SigGene_list = list(Sig_lac1,Sig_lac2),
                             TotalGene_list = list(Tot_lac1,Tot_lac2),
                             IDtype = "ens")
-#> Maps last updated on: Thu Oct 24 12:31:05 2019
-#> Warning in checkGeneSymbols(notsure): x contains non-approved gene symbols
-#> Maps last updated on: Thu Oct 24 12:31:05 2019
 GeneInfo
 #> $lactation1
-#>                 Gene  ENTREZID       SYMBOL SYMBOL_Suggested Sig
-#> 1 ENSBTAG00000012594    615431        MRPS6            MRPS6   1
-#> 2 ENSBTAG00000049850 112448353 LOC112448353     LOC112448353   1
-#> 3 ENSBTAG00000018278    281640       ATP5PO           ATP5PO   0
-#> 4 ENSBTAG00000021997    510879        ITSN1            ITSN1   0
-#> 5 ENSBTAG00000008482    516462          SON              SON   0
+#>                 Gene ENTREZID SYMBOL SYMBOL_Suggested Sig
+#> 1 ENSBTAG00000012594   615431  MRPS6            MRPS6   1
+#> 2 ENSBTAG00000004139   531350  BACH1            BACH1   1
+#> 3 ENSBTAG00000018278   281640 ATP5PO           ATP5PO   0
+#> 4 ENSBTAG00000021997   510879  ITSN1            ITSN1   0
+#> 5 ENSBTAG00000008482   516462    SON              SON   0
 #> 
 #> $lactation2
 #>                 Gene ENTREZID  SYMBOL SYMBOL_Suggested Sig
@@ -83,42 +82,65 @@ GeneInfo
 #> 5 ENSBTAG00000015212   282258  IFNAR2           IFNAR2   0
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+With simply providing **significant/total gene sets** as **list
+objects**, *convertNformatID()* automatically match and organize gene
+identifiers across different identifiers, namely, coordinating *Ensembl
+Gene ID*, *EntrezID*, *Gene Symbol* and *HGNC suggested symbol* if
+discrepancy was found. Also, an additional column indicating
+significance status will be added (1 stands for significant and 0 for
+insignificant).
+
+Objects resulted from last step (**GeneInfo**) could be fed into the
+subsequent loop processes. Here, six databases were build-in beforehand,
+users can simply indicate which database to use by providing parameter
+**Database = “xxx”** in the function body.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+HyperGEnrich(GeneSet = GeneInfo,
+             Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
+             minOverlap = 4, # minimum overlap of pathway genes and total genes
+             pvalue_thres = 0.05, # pvalue of fisher's exact test
+             adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
+             padj_method = "BH",
+             NewDB = F)
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
+The function does not return anything, however, all the results would be
+packed into *.RData* file and saved into current working directory.
+There are two elemnts in the resulting *.RData* object, **results\_raw**
+records every single term/pathway tested, **results** contains
+significant results based on the prometers provided.
 
-You can also embed plots, for example:
+Although databases will be updated on regular bases (tentatively
+half-yearly), users are free to request an update or update/download
+databases by themselves using the built-in database updating functions.
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
-
-## Installation
-
-You can install the released version of EnrichKit from
-[CRAN](https://CRAN.R-project.org) with:
+There are totally six dataset being subject to update.
 
 ``` r
-install.packages("EnrichKit")
+# Note that these functions are potentially time-comsuming
+GO_DB_Update()
+KEGG_DB_Update()
+Interpro_DB_Update()
+MeSH_DB_Update()
+Msig_DB_Update()
+Reactome_DB_Update()
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+Please note, when you use new databases, please make sure:
+
+  - Put the newly gathered database in your current working directory,
+    they could not be linked otherwise.  
+  - Make sure to set NewDB parameter to **T**.
+
+<!-- end list -->
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("liulihe954/EnrichKit")
+HyperGEnrich(GeneSet = GeneInfo,
+             Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
+             minOverlap = 4,
+             pvalue_thres = 0.05, # pvalue of fisher's exact test
+             adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
+             padj_method = "BH",
+             NewDB = T) ###
 ```

@@ -12,7 +12,7 @@
 #' @param count_rmzero when remove genes with many low expression, the minimum number of samples counted
 #' @return A dataframe with corrected measurement of expression.
 #'
-#' @import stats recount limma sva WGCNA stats dplyr readr tibble stringr edgeR readxl
+#' @import stats recount limma sva stats dplyr readr tibble stringr edgeR
 #'
 #' @export
 #'
