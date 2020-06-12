@@ -9,7 +9,7 @@
 #' @param minOverlap Minimum overlap number of total genes and genes of a target pathway, default value is \code{4}
 #' @param pvalue_thres Pvalue threshold of the Fisher's exact test. Refer to \code{\link{fisher.test}}
 #' @param adj_pvalue_thres Adjusted value threshold for multiple testing control.
-#' @param padj_method Adjusted pvalues; choose methods from c("bonferroni","hochberg","BH"). Refer to \code{\link{p.adjust}}
+#' @param padj_method Adjusted pvalues; choose methods from c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY","fdr", "none"). Refer to \code{\link{p.adjust}}
 #' @param NewDB If new database will be used, please do \code{NewDB = T}. Please make sure xxx.rda was generated using XXX_DB_Update() and is currently in the working directory.
 #'
 #' @return
@@ -23,7 +23,7 @@ HyperGEnrich = function(GeneSet = sigGene_All,
                         minOverlap = 4,
                         pvalue_thres = 0.05,
                         adj_pvalue_thres = 1,
-                        padj_method = "BH",
+                        padj_method = "BH", #c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
                         NewDB = F){
   # get db
   TestingSubsetNames = names(GeneSet)
@@ -120,6 +120,7 @@ HyperGEnrich = function(GeneSet = sigGene_All,
       findG = sig.genes[sig.genes %in% gENEs]
       s = length(findG)
       PastefindG = paste(findG,collapse="/")
+      matrix(c(1:4),byrow = 2, nrow = 2)
       M = matrix(c(s,S-s,m-s,N-m-S+s),byrow = 2, nrow = 2)
       Pval = round(fisher.test(M, alternative ="g")$p.value,100)
       tmp = data.frame(Term= names(DB_List)[j],

@@ -27,7 +27,7 @@ Also should have a column "Sig" indicating significant or not, 1 - significant; 
 
 \item{adj_pvalue_thres}{Adjusted value threshold for multiple testing control.}
 
-\item{padj_method}{Adjusted pvalues; choose methods from c("bonferroni","hochberg","BH"). Refer to \code{\link{p.adjust}}}
+\item{padj_method}{Adjusted pvalues; choose methods from c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY","fdr", "none"). Refer to \code{\link{p.adjust}}}
 
 \item{NewDB}{If new database will be used, please do \code{NewDB = T}. Please make sure xxx.rda was generated using XXX_DB_Update() and is currently in the working directory.}
 }

@@ -11,11 +11,11 @@ Maintainer: Lihe Liu (<lihe.liu@ufl.edu>)
 <!-- badges: end -->
 
 The goal of EnrichKit is to **perform over-representation** test of
-biological pathways within a given gene set pair (*SignificantGenes* and
-*TotolGenes*) based on hypergeometric distribution (**Fisher’s exact
-test**). Gene sets could possily be non-preserved co-expression modules,
-differentially expressed gene (DEG), genes flagged by significant SNPs
-and
+biological pathways (gene sets) within a given gene list pair
+(*SignificantGenes* and *TotolGenes*) based on hypergeometric
+distribution (**Fisher’s exact test**). Gene lists of interests could
+possily be non-preserved co-expression modules, differentially expressed
+gene (DEG), genes flagged by significant SNPs and
 etc..
 
 <div class="figure">
@@ -28,7 +28,8 @@ etc..
 
 </div>
 
-Currently, **six pathway/annotation databases** are integrated:
+Currently, **six pathway/annotation databases** are integrated in
+current release:
 
   - [Gene
     Ontology](http://ensemblgenomes.org/info/access/biomart)
@@ -39,19 +40,14 @@ Currently, **six pathway/annotation databases** are integrated:
   - [Molecular
     Signatures](https://data.broadinstitute.org/gsea-msigdb/msigdb/release/)
 
-Also, gene identifiers could be *Ensembl Gene ID*, *EntrezID* or *HGNC
-Gene Symbol*.
-
 Note current release can only support **Bos Taurus**, other organism
-might be included in future release.
-
-Latest update 06-08-2020.
+might be included in future release. Latest update 06-08-2020.
 
 ## Installation
 
 Currently not published on [CRAN](https://CRAN.R-project.org).
 
-Users are welcome to use the development version from
+Users could use the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -96,45 +92,77 @@ GeneInfo
 #> 5 ENSBTAG00000015212   282258  IFNAR2           IFNAR2   0
 ```
 
-With simply providing **significant/total gene sets** as **list
-objects**, *convertNformatID()* automatically match and organize gene
-identifiers across different identifiers, namely, coordinating **Ensembl
-Gene ID**, **EntrezID**, **Gene Symbol** and **HGNC suggested symbol**
-if discrepancy was found. Also, an additional column indicating
+With simply providing **significant/total gened** as **list** R objects,
+***convertNformatID()*** automatically match and organize genes across
+different identifiers, namely, coordinating **Ensembl Gene ID**,
+**EntrezID**, **Gene Symbol** and **HGNC suggested symbol** if
+discrepancy was found. Also, an additional column indicating
 significance status will be added (1 stands for significant and 0 for
 insignificant).
 
-Objects resulted from last step (**GeneInfo**) could be fed into the
-subsequent loop processes with great cohesion.
+With great cohesion, objects resulted from last step (e.g. **GeneInfo**)
+could be fed into the subsequent loop processes.
 
-Here, six databases were build-in beforehand, users can simply indicate
+With six databases been build-in beforehand, users can simply indicate
 which database to use by providing a parameter - **Database = “xxx”** in
 the function arguments.
 
 ``` r
 # Enrichment of each database might take a few mintues to finish.
-
 HyperGEnrich(GeneSet = GeneInfo,
              Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
              minOverlap = 4, # minimum overlap of pathway genes and total genes
              pvalue_thres = 0.05, # pvalue of fisher's exact test
              adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
-             padj_method = "BH",
+             padj_method = "fdr", # c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
              NewDB = F)
 ```
 
-As results, the function does not return any object in the environment,
-however, all the results would be packed into an *.RData* file and saved
-into the current working directory.
+As results, the function does not return any object in the R
+environment, however, all the results would be packed into an *.RData*
+file and saved into the current working directory.
 
-There are two elements in the resulting *.RData* object: -
-**results\_raw** records every single term/pathway tested  
-\- **results** contains significant results based on the prometers
-provided.
+There are two elements in the resulting *.RData* object:
+
+  - **results\_raw** records every single term/pathway tested  
+  - **results** contains significant results based on the prometers
+    provided.
+
+<!-- end list -->
 
 ``` r
-load() # load results
+data(SampleResults)
+class(results);length(results);dim(results[[1]])
+#> [1] "list"
+#> [1] 3
+#> [1] 144   9
+class(results_raw);length(results_raw);dim(results_raw[[1]])
+#> [1] "list"
+#> [1] 3
+#> [1] 16414     9
 ```
+
+``` r
+names(results[[1]]) 
+#> [1] "Term"               "totalG"             "sigG"              
+#> [4] "pvalue"             "ExternalLoss_total" "ExternalLoss_sig"  
+#> [7] "findG"              "hitsPerc"           "adj.pvalue"
+# comes as list object, each row is a term/pathway and each column is one statistics/attribute
+```
+
+Totally nine columns will be documented in the outputs:
+
+  - **Term**: term ID and annotation/explanations.
+  - **totalG**: **m** \# of total genes in the pathway
+  - **sigG**: **k** \# of significant genes in the pathway
+  - **pvalue**: pvalue of fisher’s exact test
+  - **ExternalLoss\_total**: \# of total genes **NOT** annotated in the
+    database
+  - **ExternalLoss\_sig**: \# of significant genes **NOT** annotated in
+    the database
+  - **findG**: enumerating **k**, significant genes found in the pathway
+  - **hitsPerc**: **k/m**, percentage of sigG
+  - **adj.pvalue**: adjusted pvalues for multiple testing correction
 
 ## About Databases
 
@@ -169,6 +197,6 @@ HyperGEnrich(GeneSet = GeneInfo,
              minOverlap = 4, # minimum overlap of pathway genes and total genes
              pvalue_thres = 0.05, # pvalue of fisher's exact test
              adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
-             padj_method = "BH",
+             padj_method = "fdr", #c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
              NewDB = T) ### Set to T
 ```
