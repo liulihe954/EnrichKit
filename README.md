@@ -149,8 +149,8 @@ names(results[[1]]) # Specific attributes/statistics
 Totally nine columns will be documented in the outputs:
 
   - **Term**: term ID and annotation/explanations.
-  - **totalG**: **m** \# of total genes in the pathway
-  - **sigG**: **k** \# of significant genes in the pathway
+  - **totalG**: ***m*** (number of total genes in the pathway)
+  - **sigG**: ***k*** (number of significant genes in the pathway)
   - **pvalue**: pvalue of fisher’s exact test
   - **ExternalLoss\_total**: \# of total genes **NOT** annotated in the
     database
