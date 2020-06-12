@@ -74,7 +74,9 @@ GeneInfo
 
 With simply providing **significant/total gene sets** as **list objects**, *convertNformatID()* automatically match and organize gene identifiers across different identifiers, namely, coordinating **Ensembl Gene ID**, **EntrezID**, **Gene Symbol** and **HGNC suggested symbol** if discrepancy was found. Also, an additional column indicating significance status will be added (1 stands for significant and 0 for insignificant).
 
-Objects resulted from last step (**GeneInfo**) could be fed into the subsequent loop processes with great cohesion. Here, six databases were build-in beforehand, users can simply indicate which database to use by providing parameter **Database = "xxx"** in the function body. 
+Objects resulted from last step (**GeneInfo**) could be fed into the subsequent loop processes with great cohesion.   
+
+Here, six databases were build-in beforehand, users can simply indicate which database to use by providing parameter **Database = "xxx"** in the function body. 
 
 ```{r enrich example, eval=F}
 HyperGEnrich(GeneSet = GeneInfo,
