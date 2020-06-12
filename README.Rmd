@@ -25,6 +25,8 @@ Maintainer: Lihe Liu (lihe.liu@ufl.edu)
 
 The goal of EnrichKit is to **perform over-representation** test of biological pathways within a given gene set pair (*SignificantGenes* and *TotolGenes*) based on hypergeometric distribution (**Fisher's exact test**). Gene sets could possily be non-preserved co-expression modules, differentially expressed gene (DEG), genes flagged by significant SNPs and etc..
 
+![](man/figures/README-Enrich_Illustration.png)
+
 Currently, **six pathway/annotation databases** are integrated:
 
 - [Gene Ontology](http://ensemblgenomes.org/info/access/biomart)
@@ -121,4 +123,8 @@ HyperGEnrich(GeneSet = GeneInfo,
              adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
              padj_method = "BH",
              NewDB = T) ###
+```
+
+```{r}
+plot(c(1:10))
 ```

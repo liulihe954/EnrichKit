@@ -17,6 +17,8 @@ test**). Gene sets could possily be non-preserved co-expression modules,
 differentially expressed gene (DEG), genes flagged by significant SNPs
 and etc..
 
+![](man/figures/README-Enrich_Illustration.png)
+
 Currently, **six pathway/annotation databases** are integrated:
 
   - [Gene
@@ -150,3 +152,9 @@ HyperGEnrich(GeneSet = GeneInfo,
              padj_method = "BH",
              NewDB = T) ###
 ```
+
+``` r
+plot(c(1:10))
+```
+
+<img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" />
