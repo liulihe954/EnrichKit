@@ -41,7 +41,9 @@ current release:
     Signatures](https://data.broadinstitute.org/gsea-msigdb/msigdb/release/)
 
 Note current release can only support **Bos Taurus**, other organism
-might be included in future release. Latest update 06-08-2020.
+might be included in future release.
+
+Latest update 06-08-2020.
 
 ## Installation
 
@@ -110,44 +112,42 @@ the function arguments.
 ``` r
 # Enrichment of each database might take a few mintues to finish.
 HyperGEnrich(GeneSet = GeneInfo,
-             Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
+             Database = 'kegg', #c("go","kegg","interpro","mesh","msig","reactome")
              minOverlap = 4, # minimum overlap of pathway genes and total genes
              pvalue_thres = 0.05, # pvalue of fisher's exact test
-             adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
+             adj_pvalue_thres = 0.1, # adjusted pvalues based on multiple testing correction
              padj_method = "fdr", # c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
              NewDB = F)
 ```
 
 As results, the function does not return any object in the R
 environment, however, all the results would be packed into an *.RData*
-file and saved into the current working directory.
+object and saved in the current working directory.
 
 There are two elements in the resulting *.RData* object:
 
-  - **results\_raw** records every single term/pathway tested  
   - **results** contains significant results based on the prometers
     provided.
+  - **results\_raw** records every single term/pathway tested
 
 <!-- end list -->
 
 ``` r
+# Here is a demo of results format
 data(SampleResults)
-class(results);length(results);dim(results[[1]])
+class(results) # it's a list
 #> [1] "list"
+length(results) # number of elements equals to numbers of (significant) gene list provided
 #> [1] 3
+dim(results[[1]]) # e.g. here are 144 significant pathways/terms and each has 9 attributes/statistics
 #> [1] 144   9
-class(results_raw);length(results_raw);dim(results_raw[[1]])
-#> [1] "list"
-#> [1] 3
-#> [1] 16414     9
 ```
 
 ``` r
-names(results[[1]]) 
+names(results[[1]]) # Specific attributes/statistics
 #> [1] "Term"               "totalG"             "sigG"              
 #> [4] "pvalue"             "ExternalLoss_total" "ExternalLoss_sig"  
 #> [7] "findG"              "hitsPerc"           "adj.pvalue"
-# comes as list object, each row is a term/pathway and each column is one statistics/attribute
 ```
 
 Totally nine columns will be documented in the outputs:
@@ -193,10 +193,10 @@ Please note, when you use new databases, please make sure:
 
 ``` r
 HyperGEnrich(GeneSet = GeneInfo,
-             Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
+             Database = 'kegg', #c("go","kegg","interpro","mesh","msig","reactome")
              minOverlap = 4, # minimum overlap of pathway genes and total genes
              pvalue_thres = 0.05, # pvalue of fisher's exact test
-             adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
+             adj_pvalue_thres = 0.1, # adjusted pvalues based on multiple testing correction
              padj_method = "fdr", #c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
              NewDB = T) ### Set to T
 ```

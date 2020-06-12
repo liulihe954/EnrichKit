@@ -13,8 +13,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     edgeR,
-    WGCNA,
-    ggplot2,
     dplyr,
     tidyr,
     readr,
@@ -23,14 +21,11 @@ Imports:
     limma,
     biomaRt,
     readxl,
-    GOSemSim,
-    corrplot,
     org.Bt.eg.db,
     MeSH.db,
     MeSH.Bta.eg.db,
     stats,
     sva,
-    meshr,
     recount,
     AnnotationDbi,
     magrittr,
