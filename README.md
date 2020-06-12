@@ -85,9 +85,9 @@ GeneInfo
 
 With simply providing **significant/total gene sets** as **list
 objects**, *convertNformatID()* automatically match and organize gene
-identifiers across different identifiers, namely, coordinating *Ensembl
-Gene ID*, *EntrezID*, *Gene Symbol* and *HGNC suggested symbol* if
-discrepancy was found. Also, an additional column indicating
+identifiers across different identifiers, namely, coordinating **Ensembl
+Gene ID**, **EntrezID**, **Gene Symbol** and **HGNC suggested symbol**
+if discrepancy was found. Also, an additional column indicating
 significance status will be added (1 stands for significant and 0 for
 insignificant).
 

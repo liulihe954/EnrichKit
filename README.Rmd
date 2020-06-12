@@ -23,7 +23,6 @@ Maintainer: Lihe Liu (lihe.liu@ufl.edu)
 <!-- badges: start -->
 <!-- badges: end -->
 
-
 The goal of EnrichKit is to **perform over-representation** test of biological pathways within a given gene set pair (*SignificantGenes* and *TotolGenes*) based on hypergeometric distribution (**Fisher's exact test**). Gene sets could possily be non-preserved co-expression modules, differentially expressed gene (DEG), genes flagged by significant SNPs and etc..
 
 Currently, **six pathway/annotation databases** are integrated:
@@ -73,7 +72,7 @@ GeneInfo = convertNformatID(GeneSetNames=c("lactation1","lactation2"),
 GeneInfo
 ```
 
-With simply providing **significant/total gene sets** as **list objects**, *convertNformatID()* automatically match and organize gene identifiers across different identifiers, namely, coordinating *Ensembl Gene ID*, *EntrezID*, *Gene Symbol* and *HGNC suggested symbol* if discrepancy was found. Also, an additional column indicating significance status will be added (1 stands for significant and 0 for insignificant).
+With simply providing **significant/total gene sets** as **list objects**, *convertNformatID()* automatically match and organize gene identifiers across different identifiers, namely, coordinating **Ensembl Gene ID**, **EntrezID**, **Gene Symbol** and **HGNC suggested symbol** if discrepancy was found. Also, an additional column indicating significance status will be added (1 stands for significant and 0 for insignificant).
 
 Objects resulted from last step (**GeneInfo**) could be fed into the subsequent loop processes. Here, six databases were build-in beforehand, users can simply indicate which database to use by providing parameter **Database = "xxx"** in the function body. 
 
