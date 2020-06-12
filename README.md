@@ -92,9 +92,9 @@ significance status will be added (1 stands for significant and 0 for
 insignificant).
 
 Objects resulted from last step (**GeneInfo**) could be fed into the
-subsequent loop processes. Here, six databases were build-in beforehand,
-users can simply indicate which database to use by providing parameter
-**Database = “xxx”** in the function body.
+subsequent loop processes with great cohesion. Here, six databases were
+build-in beforehand, users can simply indicate which database to use by
+providing parameter **Database = “xxx”** in the function body.
 
 ``` r
 HyperGEnrich(GeneSet = GeneInfo,
