@@ -7,6 +7,7 @@ Maintainer: Lihe Liu <lihe.liu@ufl.edu>
 Description: Provides functionalities for downloding biological pathways/terms from published databases, 
     including GO, KEGG, Interpro, Reactome, MeSH and Molecular Signatures Database (MSigDB), performing 
     hypergeometric-based over-presentation analysis and visualizing results.
+Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -34,7 +35,11 @@ Imports:
     AnnotationDbi,
     magrittr,
     openxlsx,
-    grDevices
+    grDevices,
+    HGNChelper,
+    data.table,
+    gage,
+    msigdbr
 RoxygenNote: 7.0.2
 URL: https://github.com/liulihe954/EnrichKit
 BugReports: https://github.com/liulihe954/EnrichKit/issues

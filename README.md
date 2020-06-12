@@ -56,7 +56,7 @@ Users are welcome to use the development version from
 
 ``` r
 install.packages("devtools")
-devtools::install_github("liulihe954/EnrichKit")
+devtools::install_github("liulihe954/EnrichKit") # Depends on R (>= 3.5.0)
 ```
 
 ## Example

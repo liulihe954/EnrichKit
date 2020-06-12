@@ -42,7 +42,7 @@ Also, gene identifiers could be *Ensembl Gene ID*, *EntrezID* or *HGNC Gene Symb
 
 Note current release can only support **Bos Taurus**, other organism might be included in future release.  
 
-Latest update 06-08-2020.  
+Latest update 06-08-2020. 
 
 ## Installation
 
@@ -52,8 +52,7 @@ Users are welcome to use the development version from [GitHub](https://github.co
 
 ```{r ID installation, eval=F}
 install.packages("devtools")
-devtools::install_github("liulihe954/EnrichKit")
-
+devtools::install_github("liulihe954/EnrichKit") # Depends on R (>= 3.5.0)
 ```
 
 ## Example
