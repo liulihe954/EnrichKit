@@ -15,9 +15,18 @@ biological pathways within a given gene set pair (*SignificantGenes* and
 *TotolGenes*) based on hypergeometric distribution (**Fisher’s exact
 test**). Gene sets could possily be non-preserved co-expression modules,
 differentially expressed gene (DEG), genes flagged by significant SNPs
-and etc..
+and
+etc..
 
-![](man/figures/README-Enrich_Illustration.png)
+<div class="figure">
+
+<img src="man/figures/README-Enrich_Illustration.png" alt=" " width="400%" />
+
+<p class="caption">
+
+</p>
+
+</div>
 
 Currently, **six pathway/annotation databases** are integrated:
 

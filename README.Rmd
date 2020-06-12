@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%",
+  out.width = "80%",
   warning=FALSE,
   message = F
 )
@@ -25,7 +25,9 @@ Maintainer: Lihe Liu (lihe.liu@ufl.edu)
 
 The goal of EnrichKit is to **perform over-representation** test of biological pathways within a given gene set pair (*SignificantGenes* and *TotolGenes*) based on hypergeometric distribution (**Fisher's exact test**). Gene sets could possily be non-preserved co-expression modules, differentially expressed gene (DEG), genes flagged by significant SNPs and etc..
 
-![](man/figures/README-Enrich_Illustration.png)
+```{r, echo=FALSE, fig.cap=" ", out.width = '400%'}
+knitr::include_graphics("man/figures/README-Enrich_Illustration.png")
+```
 
 Currently, **six pathway/annotation databases** are integrated:
 
