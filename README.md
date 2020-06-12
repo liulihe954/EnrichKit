@@ -10,11 +10,12 @@ Maintainer: Lihe Liu (<lihe.liu@ufl.edu>)
 
 <!-- badges: end -->
 
-The goal of EnrichKit is to **perform over-representation** test of a
-given gene set pair (*SignificantGenes* and *TotolGenes*) based on
-hypergeometric distribution (**Fisher’s exact test**). Gene sets could
-possily be non-preserved co-expression modules, differentially expressed
-gene (DEG), genes flagged by significant SNPs and etc..
+The goal of EnrichKit is to **perform over-representation** test of
+biological pathways within a given gene set pair (*SignificantGenes* and
+*TotolGenes*) based on hypergeometric distribution (**Fisher’s exact
+test**). Gene sets could possily be non-preserved co-expression modules,
+differentially expressed gene (DEG), genes flagged by significant SNPs
+and etc..
 
 Currently, **six pathway/annotation databases** are integrated:
 
@@ -107,9 +108,11 @@ HyperGEnrich(GeneSet = GeneInfo,
 
 The function does not return anything, however, all the results would be
 packed into *.RData* file and saved into current working directory.
-There are two elemnts in the resulting *.RData* object, **results\_raw**
-records every single term/pathway tested, **results** contains
-significant results based on the prometers provided.
+There are two elements in the resulting *.RData* object:
+
+  - **results\_raw** records every single term/pathway tested  
+  - **results** contains significant results based on the prometers
+    provided.
 
 Although databases will be updated on regular bases (tentatively
 half-yearly), users are free to request an update or update/download
