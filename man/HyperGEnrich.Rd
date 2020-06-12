@@ -15,7 +15,7 @@ HyperGEnrich(
 )
 }
 \arguments{
-\item{GeneSet}{A list object; Ideal input is object resulted from \codes{\links{convertNformatID}}
+\item{GeneSet}{A list object; Ideal input is object resulted from \code{\link{convertNformatID}}
 Each element is a gene set to be tested, should have different identifiers in columns, 1st column - ensembl id; 2nd - entrezid,
 Also should have a column "Sig" indicating significant or not, 1 - significant; 0 insignificant}
 

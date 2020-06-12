@@ -9,9 +9,10 @@ Universe_id_bta = AnnotationDbi::select(org.Bt.eg.db,
                                         columns = c("ENTREZID","SYMBOL"),
                                         keytype = "ENSEMBL") %>%
   dplyr::distinct(ENSEMBL,.keep_all= TRUE)
-save(Universe_id_bta, file = "data/Universe_id_bta.rda")
-save(Universe_id_bta, file = "data-raw/Universe_id_bta.rda")
 
+#save(Universe_id_bta, file = "data/Universe_id_bta.rda")
+
+save(Universe_id_bta, file = "data-raw/Universe_id_bta.rda")
 
 # ======= #
 # == GO ==#
@@ -37,7 +38,9 @@ Go_DB_Update = function(biomart="ensembl",
     split_tibble(column = 'TermDescription',keep = names(gene)[1])
   #
   GO_DB = DB_List
-  save(GO_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
+  #save(GO_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
   save(GO_DB,file = paste0('../data/',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
@@ -69,7 +72,9 @@ Kegg_DB_Update  = function(species = "bta",
   print(proc.time() - ptm)
   #
   KEGG_DB =  kegg.gs
-  save(KEGG_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
+  #save(KEGG_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
   save(GO_DB,file = paste0('../data/',keyword,'.rda'))
   #
   pwd = getwd();file_name = paste0(keyword,'.rda')
@@ -105,7 +110,9 @@ Interpro_DB_Update = function(biomart="ensembl",
     split_tibble(column = 'TermDescription',keep = names(gene)[1])
   #
   Interpro_DB = DB_List
-  save(Interpro_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
+  #save(Interpro_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
   save(GO_DB,file = paste0('../data/',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
@@ -149,7 +156,9 @@ Reactome_DB_Update  =function(websource = "https://reactome.org/download/current
     split_tibble(column = "TermDescription",keep = names(entrezReactome_DB_all_path_bt)[1])
   #
   Reactome_DB = DB_List
-  save(Reactome_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+  #
+  #save(Reactome_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
   save(GO_DB,file = paste0('../data/',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
@@ -194,7 +203,9 @@ MeSH_DB_Update  =function(keyword = "MeSH_DB",DB_location = '.'){
     split_tibble(column = 'TermDescription',keep = names(list_Bta)[1])
   #
   MeSH_DB = DB_List
-  save(MeSH_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
+  #save(MeSH_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
   save(GO_DB,file = paste0('../data/',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
@@ -262,7 +273,9 @@ Msig_DB_Update  =function(keyword = "Msig_DB",DB_location = '.'){
     split_tibble(column = 'TermDescription',keep = names(.)[1])
   #
   Msig_DB = DB_List
-  save(Msig_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
+  #save(Msig_DB,file = paste0(DB_location,'/',keyword,'.rda'))
+
   save(GO_DB,file = paste0('../data/',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')

@@ -46,7 +46,7 @@ convertNformatID = function(GeneSetNames,
     siglist = unlist(SigGene_list[[i]],use.names = F)
     totallist = unlist(TotalGene_list[[i]],use.names = F)
 
-    Gather = data.frame(Gene = totallist) %>%
+    Gather = data.frame(Gene = totallist,stringsAsFactors=FALSE) %>%
       dplyr::left_join(Universe_id_bta,by=c('Gene'=names(Universe_id_bta)[IDprovd])) %>%
       mutate(SYMBOL_Suggested = check_symbol(SYMBOL)) %>%
       mutate(Sig = ifelse(Gene %in% siglist,'1','0'))
