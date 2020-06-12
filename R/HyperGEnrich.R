@@ -28,23 +28,7 @@ HyperGEnrich = function(GeneSet = sigGene_All,
   # get db
   TestingSubsetNames = names(GeneSet)
   message("Total Number of subsets/module to check: ",length(TestingSubsetNames))
-  if (NewDB != T){
-    if (Database == 'go'){
-      DB_List = get(data(GO_DB));IDtype = 1
-    } else if (Database == 'kegg'){
-      DB_List = get(data(KEGG_DB));IDtype = 2
-    } else if (Database == 'interpro'){
-      DB_List = get(data(Interpro_DB));IDtype = 1
-    } else if (Database == 'mesh'){
-      DB_List = get(data(MeSH_DB));IDtype = 2
-    } else if (Database == 'msig'){
-      DB_List = get(data(Msig_DB));IDtype = 2
-    } else if (Database == 'reactome'){
-      DB_List = get(data(Reactome_DB));IDtype = 2
-    } else {
-      print('Please choose database: go,kegg,interpro,mesh,msig,reactome')
-    }
-  } else {
+  if (NewDB){
     if (Database == 'go'){
       DB_List = get(load('./GO_DB.rda'));IDtype = 1
     } else if (Database == 'kegg'){
@@ -57,6 +41,22 @@ HyperGEnrich = function(GeneSet = sigGene_All,
       DB_List = get(load('./Msig_DB.rda'));IDtype = 2
     } else if (Database == 'reactome'){
       DB_List = get(load('./Reactome_DB.rda'));IDtype = 2
+    } else {
+      print('Please choose database: go,kegg,interpro,mesh,msig,reactome')
+    }
+  } else {
+    if (Database == 'go'){
+      DB_List = get(data(GO_DB));IDtype = 1
+    } else if (Database == 'kegg'){
+      DB_List = get(data(KEGG_DB));IDtype = 2
+    } else if (Database == 'interpro'){
+      DB_List = get(data(Interpro_DB));IDtype = 1
+    } else if (Database == 'mesh'){
+      DB_List = get(data(MeSH_DB));IDtype = 2
+    } else if (Database == 'msig'){
+      DB_List = get(data(Msig_DB));IDtype = 2
+    } else if (Database == 'reactome'){
+      DB_List = get(data(Reactome_DB));IDtype = 2
     } else {
       print('Please choose database: go,kegg,interpro,mesh,msig,reactome')
     }
@@ -111,8 +111,9 @@ HyperGEnrich = function(GeneSet = sigGene_All,
     pb <- txtProgressBar(min = 0, # create progress bar
                          max = totalterm,
                          style = 3)
-    for(j in seq_along(totalterm)){
-      setTxtProgressBar(pb, i)
+
+    for(j in seq_along(DB_List)){
+      setTxtProgressBar(pb, j)
       #if (j%%1000 == 0) {message("tryingd on term ",j," - ",names(DB_List)[j])}
       gENEs = DB_List[[j]] # all gene in target GO #### note
       m = length(total.genes[total.genes %in% gENEs]) # genes from target GO and in our dataset

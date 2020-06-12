@@ -75,7 +75,9 @@ Tot_lac2 = c("ENSBTAG00000009188","ENSBTAG00000001258","ENSBTAG00000021819","ENS
 GeneInfo = convertNformatID(GeneSetNames=c("lactation1","lactation2"),
                             SigGene_list = list(Sig_lac1,Sig_lac2),
                             TotalGene_list = list(Tot_lac1,Tot_lac2),
-                            IDtype = "ens")
+                            IDtype = "ens") # Need to choose from c('ens','entrez','symbol')
+
+# Resulting an integreted gene identifier object
 GeneInfo
 #> $lactation1
 #>                 Gene ENTREZID SYMBOL SYMBOL_Suggested Sig
@@ -106,10 +108,12 @@ Objects resulted from last step (**GeneInfo**) could be fed into the
 subsequent loop processes with great cohesion.
 
 Here, six databases were build-in beforehand, users can simply indicate
-which database to use by providing parameter **Database = “xxx”** in the
-function body.
+which database to use by providing a parameter - **Database = “xxx”** in
+the function arguments.
 
 ``` r
+# Enrichment of each database might take a few mintues to finish.
+
 HyperGEnrich(GeneSet = GeneInfo,
              Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
              minOverlap = 4, # minimum overlap of pathway genes and total genes
@@ -119,13 +123,18 @@ HyperGEnrich(GeneSet = GeneInfo,
              NewDB = F)
 ```
 
-The function does not return anything, however, all the results would be
-packed into *.RData* file and saved into current working directory.
-There are two elements in the resulting *.RData* object:
+As results, the function does not return any object in the environment,
+however, all the results would be packed into an *.RData* file and saved
+into the current working directory.
 
-  - **results\_raw** records every single term/pathway tested  
-  - **results** contains significant results based on the prometers
-    provided.
+There are two elements in the resulting *.RData* object: -
+**results\_raw** records every single term/pathway tested  
+\- **results** contains significant results based on the prometers
+provided.
+
+``` r
+load() # load results
+```
 
 ## About Databases
 
@@ -149,17 +158,17 @@ Reactome_DB_Update()
 Please note, when you use new databases, please make sure:
 
   - Put the newly gathered database in your current working directory,
-    they could not be linked otherwise.  
-  - Make sure to set NewDB parameter to **T**.
+    they could not be loaded otherwise.  
+  - Make sure to set *NewDB* parameter to **T**.
 
 <!-- end list -->
 
 ``` r
 HyperGEnrich(GeneSet = GeneInfo,
              Database = 'kegg', #'go','kegg,'interpro','mesh','msig','reactome'
-             minOverlap = 4,
+             minOverlap = 4, # minimum overlap of pathway genes and total genes
              pvalue_thres = 0.05, # pvalue of fisher's exact test
              adj_pvalue_thres = 1, # adjusted pvalues based on multiple testing correction
              padj_method = "BH",
-             NewDB = T) ###
+             NewDB = T) ### Set to T
 ```
