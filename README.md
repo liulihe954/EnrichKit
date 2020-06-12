@@ -127,6 +127,8 @@ There are two elements in the resulting *.RData* object:
   - **results** contains significant results based on the prometers
     provided.
 
+## About Databases
+
 Although databases will be updated on regular bases (tentatively
 half-yearly), users are free to request an update or update/download
 databases by themselves using the built-in database updating functions.

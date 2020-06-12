@@ -97,6 +97,8 @@ The function does not return anything, however, all the results would be packed 
 - **results_raw** records every single term/pathway tested  
 - **results** contains significant results based on the prometers provided.
 
+## About Databases
+
 Although databases will be updated on regular bases (tentatively half-yearly), users are free to request an update or update/download databases by themselves using the built-in database updating functions. 
 
 There are totally six dataset being subject to update.
