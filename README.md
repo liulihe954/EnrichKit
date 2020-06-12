@@ -6,10 +6,6 @@
 Authors: Lihe Liu and Francisco Peñagaricano  
 Maintainer: Lihe Liu (<lihe.liu@ufl.edu>)
 
-<!-- badges: start -->
-
-<!-- badges: end -->
-
 The goal of EnrichKit is to **perform over-representation** test of
 biological pathways (gene sets) within a given gene list pair
 (*SignificantGenes* and *TotolGenes*) based on hypergeometric
