@@ -152,10 +152,10 @@ Totally nine columns will be documented in the outputs:
   - **totalG**: ***m*** (number of total genes in the pathway)
   - **sigG**: ***k*** (number of significant genes in the pathway)
   - **pvalue**: pvalue of fisher’s exact test
-  - **ExternalLoss\_total**: \# of total genes **NOT** annotated in the
-    database
-  - **ExternalLoss\_sig**: \# of significant genes **NOT** annotated in
+  - **ExternalLoss\_total**: number of total genes **NOT** annotated in
     the database
+  - **ExternalLoss\_sig**: number of significant genes **NOT** annotated
+    in the database
   - **findG**: enumerating **k**, significant genes found in the pathway
   - **hitsPerc**: **k/m**, percentage of sigG
   - **adj.pvalue**: adjusted pvalues for multiple testing correction
