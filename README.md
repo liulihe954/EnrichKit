@@ -6,12 +6,13 @@
 Authors: Lihe Liu and Francisco Peñagaricano  
 Maintainer: Lihe Liu (<lihe.liu@ufl.edu>)
 
-The goal of EnrichKit is to **perform over-representation** test of
-biological pathways (gene sets) within a given gene list pair
-(*SignificantGenes* and *TotolGenes*) based on hypergeometric
-distribution (**Fisher’s exact test**). Gene lists of interests could
-possily be non-preserved co-expression modules, differentially expressed
-gene (DEG), genes flagged by significant SNPs and
+The goal of EnrichKit is to perform an **over-representation analysis**
+of biological pathways (gene sets) given two gene lists (*Significant
+Genes* and *Total Genes*) using **Fisher’s exact test** (test of
+proportions based on the hypergeometric distribution). Significant genes
+could be derived from differentially expressed genes, genes flagged by
+significant SNPs from whole-genome scans, genes in non-preserved
+co-expression modules,
 etc..
 
 <div class="figure">
@@ -24,7 +25,7 @@ etc..
 
 </div>
 
-Currently, **six pathway/annotation databases** are integrated in
+**Six pathway/annotation databases** are currently integrated in the
 current release:
 
   - [Gene
@@ -36,16 +37,17 @@ current release:
   - [Molecular
     Signatures](https://data.broadinstitute.org/gsea-msigdb/msigdb/release/)
 
-Note current release can only support **Bos Taurus**, other organism
-might be included in future release.
+Note that the current release only supports **Bos Taurus**, other
+organisms might be included in the future.
 
 Latest update 06-08-2020.
 
 ## Installation
 
-Currently not published on [CRAN](https://CRAN.R-project.org).
+EnrichKit is currently unavailable on
+[CRAN](https://CRAN.R-project.org).
 
-Users could use the development version from
+Users should use the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -55,7 +57,8 @@ devtools::install_github("liulihe954/EnrichKit") # Depends on R (>= 3.5.0)
 
 ## Example
 
-Soppose we have identified 2 out 5 DEG in each of the two lactations.
+Suppose we have identified 2 DEGs from a total of 5 genes in each of two
+lactations.
 
 ``` r
 library(EnrichKit)
@@ -90,20 +93,19 @@ GeneInfo
 #> 5 ENSBTAG00000015212   282258  IFNAR2           IFNAR2   0
 ```
 
-With simply providing **significant/total gened** as **list** R objects,
-***convertNformatID()*** automatically match and organize genes across
-different identifiers, namely, coordinating **Ensembl Gene ID**,
-**EntrezID**, **Gene Symbol** and **HGNC suggested symbol** if
-discrepancy was found. Also, an additional column indicating
-significance status will be added (1 stands for significant and 0 for
-insignificant).
+Simply providing **significant and total genes** as **lists**, the
+function ***convertNformatID()** *automatically matches and organizes
+genes across different identifiers, namely, **Ensembl Gene ID**,
+**EntrezID**, **Gene Symbol** and \*\*HGNC suggested symbol\*. Also, an
+additional column indicating significance status will be added (1 stands
+for significant and 0 for insignificant).
 
-With great cohesion, objects resulted from last step (e.g. **GeneInfo**)
-could be fed into the subsequent loop processes.
+The R object resulted from the last step (e.g. **GeneInfo**) could be
+fed into the subsequent step.
 
-With six databases been build-in beforehand, users can simply indicate
-which database to use by providing a parameter - **Database = “xxx”** in
-the function arguments.
+There are six databases build-in beforehand, users can simply indicate
+which database they want to use by providing a parameter - **Database =
+“xxx”** in the function arguments:
 
 ``` r
 # Enrichment of each database might take a few mintues to finish.
@@ -116,13 +118,13 @@ HyperGEnrich(GeneSet = GeneInfo,
              NewDB = F)
 ```
 
-As results, the function does not return any object in the R
-environment, however, all the results would be packed into an *.RData*
-object and saved in the current working directory.
+This function does not return any object in the R environment, however,
+all the results are packed into an *.RData* object and saved in the
+current working directory.
 
 There are two elements in the resulting *.RData* object:
 
-  - **results** contains significant results based on the prometers
+  - **results** contains significant results based on the parameters
     provided.
   - **results\_raw** records every single term/pathway tested
 
@@ -146,27 +148,27 @@ names(results[[1]]) # Specific attributes/statistics
 #> [7] "findG"              "hitsPerc"           "adj.pvalue"
 ```
 
-Totally nine columns will be documented in the outputs:
+A total of nine columns are documented in the outputs:
 
   - **Term**: term ID and annotation/explanations.
   - **totalG**: ***m*** (number of total genes in the pathway)
   - **sigG**: ***k*** (number of significant genes in the pathway)
-  - **pvalue**: pvalue of fisher’s exact test
+  - **pvalue**: Pvalue of Fisher’s exact test
   - **ExternalLoss\_total**: number of total genes **NOT** annotated in
     the database
   - **ExternalLoss\_sig**: number of significant genes **NOT** annotated
     in the database
   - **findG**: enumerating **k**, significant genes found in the pathway
-  - **hitsPerc**: **k/m**, percentage of sigG
-  - **adj.pvalue**: adjusted pvalues for multiple testing correction
+  - **hitsPerc**: **k/m**, percentage of significant genes
+  - **adj.pvalue**: adjusted Pvalue (multiple testing correction)
 
 ## About Databases
 
-Although databases will be updated on regular bases (tentatively
-half-yearly), users are free to request an update or update/download
-databases by themselves using the built-in database updating functions.
+Although databases will be updated on a regular basis (tentatively every
+6 months), users are free to request an update or update/download
+databases using the built-in database updating functions.
 
-There are totally six dataset being subject to update.
+There are a total of six datasets that can be updated.
 
 ``` r
 # Note that these functions are potentially time-comsuming.
@@ -181,8 +183,8 @@ Reactome_DB_Update()
 
 Please note, when you use new databases, please make sure:
 
-  - Put the newly gathered database in your current working directory,
-    they could not be loaded otherwise.  
+  - Put the new database in your current working directory, it could not
+    be loaded otherwise.  
   - Make sure to set *NewDB* parameter to **T**.
 
 <!-- end list -->
