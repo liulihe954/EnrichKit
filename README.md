@@ -4,7 +4,7 @@
 # EnrichKit
 
 Authors: Lihe Liu and Francisco Peñagaricano  
-Maintainer: Lihe Liu (<lihe.liu@ufl.edu>)
+Maintainer: Lihe Liu (<lihe.liu@wisc.edu>)
 
 The goal of EnrichKit is to perform an **over-representation analysis**
 of biological pathways (gene sets) given two gene lists (*Significant
@@ -12,8 +12,7 @@ Genes* and *Total Genes*) using **Fisher’s exact test** (test of
 proportions based on the hypergeometric distribution). Significant genes
 could be derived from differentially expressed genes, genes flagged by
 significant SNPs from whole-genome scans, genes in non-preserved
-co-expression modules,
-etc..
+co-expression modules, etc..
 
 <div class="figure">
 
@@ -28,8 +27,7 @@ etc..
 **Six pathway/annotation databases** are currently integrated in the
 current release:
 
-  - [Gene
-    Ontology](http://ensemblgenomes.org/info/access/biomart)
+  - [Gene Ontology](http://ensemblgenomes.org/info/access/biomart)
   - [KEGG](https://www.genome.jp/kegg/)
   - [Interpro](http://ensemblgenomes.org/info/access/biomart)
   - [MeSH](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C10&q=The+MeSH+translation+maintenance+system%3A+structure%2C+interface+design%2C+and+implementation.&btnG=)
@@ -40,7 +38,7 @@ current release:
 Note that the current release only supports **Bos Taurus**, other
 organisms might be included in the future.
 
-Latest update 06-08-2020.
+Latest update 10-08-2020.
 
 ## Installation
 
@@ -100,7 +98,7 @@ genes across different identifiers, namely, **Ensembl Gene ID**,
 additional column indicating significance status will be added (1 stands
 for significant and 0 for insignificant).
 
-The R object resulted from the last step (e.g. **GeneInfo**) could be
+The R object resulted from the last step (e.g. **GeneInfo**) could be
 fed into the subsequent step.
 
 There are six databases build-in beforehand, users can simply indicate

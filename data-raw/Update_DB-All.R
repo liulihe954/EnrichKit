@@ -1,5 +1,20 @@
+library(org.Bt.eg.db)
+library(MeSH.Bta.eg.db)
+library(MeSH.db)
+library(gage)
+library(magrittr)
+library(msigdbr)
+library(biomaRt)
+library(data.table)
+library(dplyr)
 # set wd
 setwd('./data/')
+#
+split_tibble <- function(tibble,column,keep) {
+  tibble %>%
+    split(., .[,column]) %>%
+    lapply(., function(x) c(unlist(x[,keep],use.names = F)))
+}
 
 # ============================== #
 # Obtain Universe Bta Identifier #
@@ -11,8 +26,7 @@ Universe_id_bta = AnnotationDbi::select(org.Bt.eg.db,
   dplyr::distinct(ENSEMBL,.keep_all= TRUE)
 
 #save(Universe_id_bta, file = "data/Universe_id_bta.rda")
-
-save(Universe_id_bta, file = "data-raw/Universe_id_bta.rda")
+save(Universe_id_bta, file = "./Universe_id_bta.rda")
 
 # ======= #
 # == GO ==#
@@ -75,7 +89,7 @@ Kegg_DB_Update  = function(species = "bta",
 
   #save(KEGG_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('./',keyword,'.rda'))
+  save(KEGG_DB,file = paste0('./',keyword,'.rda'))
   #
   pwd = getwd();file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length( kegg.gs),'records were updated on ',Sys.time()))
@@ -112,7 +126,7 @@ Interpro_DB_Update = function(biomart="ensembl",
 
   #save(Interpro_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('./',keyword,'.rda'))
+  save(Interpro_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -158,7 +172,7 @@ Reactome_DB_Update  =function(websource = "https://reactome.org/download/current
   #
   #save(Reactome_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('./',keyword,'.rda'))
+  save(Reactome_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -204,7 +218,7 @@ MeSH_DB_Update  =function(keyword = "MeSH_DB",DB_location = '.'){
 
   #save(MeSH_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('./',keyword,'.rda'))
+  save(MeSH_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -275,7 +289,7 @@ Msig_DB_Update  =function(keyword = "Msig_DB",DB_location = '.'){
 
   #save(Msig_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('./',keyword,'.rda'))
+  save(Msig_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))

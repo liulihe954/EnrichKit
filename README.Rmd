@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # EnrichKit
 
 Authors: Lihe Liu and Francisco Peñagaricano  
-Maintainer: Lihe Liu (lihe.liu@ufl.edu)
+Maintainer: Lihe Liu (lihe.liu@wisc.edu)
 
 
 The goal of EnrichKit is to perform an **over-representation analysis** of biological pathways (gene sets) given two gene lists (*Significant Genes* and *Total Genes*) using **Fisher's exact test** (test of proportions based on the hypergeometric distribution). Significant genes could be derived from differentially expressed genes, genes flagged by significant SNPs from whole-genome scans, genes in non-preserved co-expression modules, etc..
@@ -39,7 +39,7 @@ knitr::include_graphics("man/figures/README-Enrich_Illustration.png")
 
 Note that the current release only supports **Bos Taurus**, other organisms might be included in the future. 
 
-Latest update 06-08-2020. 
+Latest update 10-08-2020. 
 
 ## Installation
 
