@@ -1,5 +1,5 @@
 # set wd
-setwd('./data-raw/')
+setwd('./data/')
 
 # ============================== #
 # Obtain Universe Bta Identifier #
@@ -41,7 +41,7 @@ Go_DB_Update = function(biomart="ensembl",
 
   #save(GO_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('../data/',keyword,'.rda'))
+  save(GO_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -51,9 +51,9 @@ Go_DB_Update = function(biomart="ensembl",
     pwd = getwd();
     message(paste("Database was saved in ",pwd," in the name of",file_name))
   }
-  load(paste0(DB_location,'/',keyword,'.rda'))
+  #load(paste0(DB_location,'/',keyword,'.rda'))
 }
-# Go_DB_Update()
+Go_DB_Update()
 
 
 # ========== #
@@ -75,15 +75,14 @@ Kegg_DB_Update  = function(species = "bta",
 
   #save(KEGG_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('../data/',keyword,'.rda'))
+  save(GO_DB,file = paste0('./',keyword,'.rda'))
   #
   pwd = getwd();file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length( kegg.gs),'records were updated on ',Sys.time()))
   message(paste("Database was saved in",pwd," in the name of",file_name))
-  load(paste0(DB_location,'/',keyword,'.rda'))
+  #load(paste0(DB_location,'/',keyword,'.rda'))
 }
-
-# Kegg_DB_Update()
+Kegg_DB_Update()
 
 
 # ============== #
@@ -113,7 +112,7 @@ Interpro_DB_Update = function(biomart="ensembl",
 
   #save(Interpro_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('../data/',keyword,'.rda'))
+  save(GO_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -123,9 +122,9 @@ Interpro_DB_Update = function(biomart="ensembl",
     pwd = getwd();
     message(paste("Database was saved in ",pwd," in the name of",file_name))
   }
-  load(paste0(DB_location,'/',keyword,'.rda'))
+  #load(paste0(DB_location,'/',keyword,'.rda'))
 }
-# Interpro_DB_Update()
+Interpro_DB_Update()
 
 
 # ============== #
@@ -159,7 +158,7 @@ Reactome_DB_Update  =function(websource = "https://reactome.org/download/current
   #
   #save(Reactome_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('../data/',keyword,'.rda'))
+  save(GO_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -169,10 +168,9 @@ Reactome_DB_Update  =function(websource = "https://reactome.org/download/current
     pwd = getwd();
     message(paste("Database was saved in ",pwd," in the name of",file_name))
   }
-  load(paste0(DB_location,'/',keyword,'.rda'))
+  #load(paste0(DB_location,'/',keyword,'.rda'))
 }
-
-# Reactome_DB_Update()
+Reactome_DB_Update()
 
 # ============ #
 # ==  MeSH  =#
@@ -206,7 +204,7 @@ MeSH_DB_Update  =function(keyword = "MeSH_DB",DB_location = '.'){
 
   #save(MeSH_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('../data/',keyword,'.rda'))
+  save(GO_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -216,9 +214,10 @@ MeSH_DB_Update  =function(keyword = "MeSH_DB",DB_location = '.'){
     pwd = getwd();
     message(paste("Database was saved in ",pwd," in the name of",file_name))
   }
-  load(paste0(DB_location,'/',keyword,'.rda'))
+  #load(paste0(DB_location,'/',keyword,'.rda'))
 }
-# MeSH_DB_Update()
+MeSH_DB_Update()
+
 # ============ #
 # ==   Msig   =#
 # =========== #
@@ -246,7 +245,7 @@ Msig_DB_Update  =function(keyword = "Msig_DB",DB_location = '.'){
     target_raw <- as.character(html_text( target_raw))
     text = str_replace_all( target_raw,"[\r\n]","")
     final = as.character(text[pos])
-    message('try on ', URL)
+    #message('try on ', URL)
     return(final)
   }
 
@@ -276,7 +275,7 @@ Msig_DB_Update  =function(keyword = "Msig_DB",DB_location = '.'){
 
   #save(Msig_DB,file = paste0(DB_location,'/',keyword,'.rda'))
 
-  save(GO_DB,file = paste0('../data/',keyword,'.rda'))
+  save(GO_DB,file = paste0('./',keyword,'.rda'))
   #
   file_name = paste0(keyword,'.rda')
   message(paste("Totally ",length(DB_List),'records were updated on ',Sys.time()))
@@ -286,7 +285,7 @@ Msig_DB_Update  =function(keyword = "Msig_DB",DB_location = '.'){
     pwd = getwd();
     message(paste("Database was saved in ",pwd," in the name of",file_name))
   }
-  load(paste0(DB_location,'/',keyword,'.rda'))
+  #load(paste0(DB_location,'/',keyword,'.rda'))
 }
-#Msig_DB_Update()
+Msig_DB_Update()
 

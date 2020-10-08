@@ -96,7 +96,7 @@ GeneInfo
 Simply providing **significant and total genes** as **lists**, the
 function ***convertNformatID()** *automatically matches and organizes
 genes across different identifiers, namely, **Ensembl Gene ID**,
-**EntrezID**, **Gene Symbol** and \*\*HGNC suggested symbol\*. Also, an
+**EntrezID**, **Gene Symbol** and **HGNC suggested symbol**. Also, an
 additional column indicating significance status will be added (1 stands
 for significant and 0 for insignificant).
 
